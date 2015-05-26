@@ -22,16 +22,16 @@ public class BinarySearchTreeTest {
 
 		Assert.assertTrue(node1.equals(classUnderTest.getRoot().getLeft()));
 		Assert.assertTrue(node2.equals(classUnderTest.getRoot().getRight()));
-		
+
 		BinaryTreeNode<Integer> node3 = new BinaryTreeNode<Integer>(15);
 		BinaryTreeNode<Integer> node4 = new BinaryTreeNode<Integer>(27);
-		
+
 		classUnderTest.insert(node3);
 		classUnderTest.insert(node4);
-		
+
 		Assert.assertTrue(node1.getRight().equals(node3));
 		Assert.assertTrue(node2.getLeft().equals(node4));
-		
+
 		System.out.print("\nTest Insertion.");
 		classUnderTest.inOrder();
 
@@ -39,7 +39,7 @@ public class BinarySearchTreeTest {
 
 	@Test
 	public void testDelete() {
-		
+
 		BinaryTreeNode<Integer> node = new BinaryTreeNode<Integer>(23);
 		classUnderTest.insert(node);
 
@@ -51,30 +51,54 @@ public class BinarySearchTreeTest {
 
 		BinaryTreeNode<Integer> node3 = new BinaryTreeNode<Integer>(15);
 		BinaryTreeNode<Integer> node4 = new BinaryTreeNode<Integer>(27);
-		
+
 		classUnderTest.insert(node3);
 		classUnderTest.insert(node4);
-		
-		System.out.print("In Order Traversal Before Deletion of Node 3 "+node3);
-		
-		classUnderTest.inOrder();
-		
-		classUnderTest.delete(node3);
-		
-		System.out.print("\nIn Order Traversal After Deletion of Node 3 "+node3);
-		
-		classUnderTest.inOrder();
-		
-		Assert.assertTrue(node.getLeft().equals(node1));
-		
-		System.out.print("\nIn Order Traversal Before Deletion of Node  "+node);
-		classUnderTest.inOrder();
-		
-		classUnderTest.delete(node);
-		
-		System.out.print("\nIn Order Traversal After Deletion of Node  "+node);
+
+		System.out.print("In Order Traversal Before Deletion of Node 3 "
+				+ node3);
+
 		classUnderTest.inOrder();
 
+		classUnderTest.delete(node3);
+
+		System.out.print("\nIn Order Traversal After Deletion of Node 3 "
+				+ node3);
+
+		classUnderTest.inOrder();
+
+		Assert.assertTrue(node.getLeft().equals(node1));
+
+		System.out.print("\nIn Order Traversal Before Deletion of Node  "
+				+ node);
+		classUnderTest.inOrder();
+
+		classUnderTest.delete(node);
+
+		System.out
+				.print("\nIn Order Traversal After Deletion of Node  " + node);
+		classUnderTest.inOrder();
+
+	}
+
+	@Test
+	public void testInserts() {
+		BinaryTreeNode<Integer> node = new BinaryTreeNode<Integer>(23);
+		BinaryTreeNode<Integer> node1 = new BinaryTreeNode<Integer>(37);
+		BinaryTreeNode<Integer> node2 = new BinaryTreeNode<Integer>(45);
+		BinaryTreeNode<Integer> node3 = new BinaryTreeNode<Integer>(55);
+
+		classUnderTest.insert(node);
+		classUnderTest.insert(node1);
+		classUnderTest.insert(node2);
+		classUnderTest.insert(node3);
+
+		int expected = 4;
+		int actual = classUnderTest.height();
+
+		Assert.assertEquals(expected, actual);
+		
+		classUnderTest.print();
 	}
 
 }

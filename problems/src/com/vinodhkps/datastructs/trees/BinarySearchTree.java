@@ -1,5 +1,7 @@
 package com.vinodhkps.datastructs.trees;
 
+import static com.vinodhkps.util.MathUtil.max;
+
 public class BinarySearchTree<T extends Comparable<T>> {
 
 	private BinaryTreeNode<T> root;
@@ -53,6 +55,18 @@ public class BinarySearchTree<T extends Comparable<T>> {
 		}
 	}
 
+	public int height() {
+		return height(root);
+	}
+
+	int height(BinaryTreeNode<T> node) {
+		int ret = 0;
+		if (node != null) {
+			ret = max(height(node.getLeft()), height(node.getRight())) + 1;
+		}
+		return ret;
+	}
+
 	public BinaryTreeNode<T> search(T data) {
 
 		BinaryTreeNode<T> node = root;
@@ -85,9 +99,9 @@ public class BinarySearchTree<T extends Comparable<T>> {
 		if (node == null || node.getData() == null) {
 			throw new IllegalArgumentException("Cannot delete a null node!");
 		}
-		
+
 		node = search(node.getData());
-		
+
 		if (node.getLeft() == null) {
 			transplant(node, node.getRight());
 		} else if (node.getRight() == null) {
@@ -155,6 +169,24 @@ public class BinarySearchTree<T extends Comparable<T>> {
 			node = node.getRight();
 		}
 		return node;
+	}
+
+	public void print() {
+		print(root);
+	}
+
+	void print(BinaryTreeNode<T> node) {
+		if (node != null) {
+			System.out.println(node.getData());
+			StringBuffer branches = new StringBuffer();
+			if (node.getLeft() != null)
+				branches.append("/");
+			if (node.getRight() != null)
+				branches.append("\\");
+			System.out.println(branches.toString());
+			print(node.getLeft());
+			print(node.getRight());
+		}
 	}
 
 }
