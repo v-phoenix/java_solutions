@@ -6,6 +6,9 @@ package com.vinodhkps.algos.dynamicprogramming;
  */
 public class FindMaxSumNonConsecutiveArray {
 
+	/*
+	 * Recursive non-optimized solution
+	 */
 	int findMaxSum(int[] A, int start, int end) {
 		int ret = -1;
 		int S[] = new int[A.length];
