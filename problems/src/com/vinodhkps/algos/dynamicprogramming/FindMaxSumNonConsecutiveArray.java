@@ -37,4 +37,53 @@ public class FindMaxSumNonConsecutiveArray {
 		return ret;
 	}
 
+	int maxSumNonRecursive(int[] A) {
+		int ret = -1;
+		int[] sol = new int[A.length];
+		int[] solPath = new int[A.length];
+
+		for (int i = A.length - 1; i >= 0; i--) {
+			sol[i] = -1;
+			solPath[i] = -1;
+		}
+
+		for (int i = A.length - 1; i >= 0; i--) {
+			int k = i + 2;
+			if (k >= A.length) {
+				sol[i] = A[i];
+				solPath[i] = i;
+			} else {
+				int temp = -1;
+				for (; k < A.length; k++) {
+					if (temp < (A[i] + sol[k])) {
+						temp = A[i] + sol[k];
+						solPath[i] = k;
+					}
+				}
+				sol[i] = temp;
+			}
+		}
+
+		int pos = -1;
+
+		for (int i = 0; i < A.length; i++) {
+			if (ret < sol[i]) {
+				ret = sol[i];
+				pos = i;
+			}
+		}
+
+		while (true) {
+			if (pos >= A.length - 1) {
+				System.out.println("Select A[" + pos + "] which is " + A[pos]);
+				break;
+			} else {
+				System.out.println("Select A[" + pos + "] which is " + A[pos]);
+				pos = solPath[pos];
+			}
+		}
+		System.out.println("Max Sum is " + ret);
+		System.out.println("==============");
+		return ret;
+	}
 }
