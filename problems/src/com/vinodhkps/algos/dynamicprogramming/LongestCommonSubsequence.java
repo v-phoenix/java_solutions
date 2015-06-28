@@ -13,15 +13,6 @@ package com.vinodhkps.algos.dynamicprogramming;
 
 public class LongestCommonSubsequence {
 	
-	public void maxSubSeq(char [] seq1, char[] seq2) {
-		char[][] maxSub = maxSubSequence(seq1, seq2);
-	}
-	
-	void printLcs(char [][] maxSub, char [] inputSeq, int i, int j) {
-		
-		
-	}
-
 	char[][] maxSubSequence(char[] seq1, char[] seq2) {
 
 		int m = seq1.length;
